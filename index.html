@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NiakoNiako ♰ 喵子喵子 · 团体介绍</title>
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+<link href="https://fonts.loli.net/css2?family=Cinzel:wght@400;600;800&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Pinyon+Script&family=UnifrakturCook:wght@700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#070310; --bg1:#140a26; --bg2:#1d0e2e;
+  --ink:#f4eefb; --muted:#bfb2d8;
+  --blue:#8fc0ff; --blue-deep:#3f7bff; --blue-glow:rgba(120,170,255,.55);
+  --pink:#ffa0d2; --pink-deep:#ff3f9a; --pink-glow:rgba(255,120,190,.55);
+  --silver:#eef0ff; --silver-deep:#aeb4d8; --silver-glow:rgba(220,224,255,.5);
+  --gold:#f4d98b;
+  --accent:#d9a8ff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;background:var(--bg0);overflow:hidden;font-family:"Noto Serif SC",serif;color:var(--ink);}
+img{display:block;}
+
+/* ---------- viewport scaling ---------- */
+.viewport{position:fixed;inset:0;display:grid;place-items:center;
+  background:
+    radial-gradient(1200px 800px at 18% 8%, rgba(255,80,160,.20), transparent 60%),
+    radial-gradient(1100px 900px at 86% 18%, rgba(70,120,255,.20), transparent 60%),
+    radial-gradient(1400px 1000px at 50% 120%, rgba(150,80,220,.22), transparent 60%),
+    linear-gradient(160deg, var(--bg1), var(--bg0) 60%);
+}
+.stage{width:1600px;height:900px;position:relative;transform-origin:center center;}
+
+/* starfield */
+#stars,#stars2,#stars3{position:absolute;inset:-200px;pointer-events:none;}
+.tw{animation:tw 4s ease-in-out infinite;}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.sparkle{position:absolute;color:#fff;pointer-events:none;text-shadow:0 0 10px #fff,0 0 22px var(--accent);
+  animation:floaty linear infinite, tw 3.5s ease-in-out infinite;opacity:.0;}
+@keyframes floaty{0%{transform:translateY(20px) rotate(0deg)}100%{transform:translateY(-40px) rotate(180deg)}}
+
+/* ---------- slides ---------- */
+.slide{position:absolute;inset:0;padding:64px 84px;opacity:0;visibility:hidden;
+  transition:opacity .7s ease, transform .7s ease;transform:scale(1.03);}
+.slide.active{opacity:1;visibility:visible;transform:scale(1);}
+.slide.active .rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both;}
+.slide.active .rise:nth-child(2){animation-delay:.08s}
+.slide.active .rise:nth-child(3){animation-delay:.16s}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* lace frame on every slide */
+.frame{position:absolute;inset:26px;border:1px solid rgba(255,255,255,.16);border-radius:18px;
+  pointer-events:none;box-shadow:inset 0 0 60px rgba(170,120,255,.10);}
+.frame::before,.frame::after{content:"⊹";position:absolute;font-size:24px;color:var(--accent);opacity:.8;}
+.frame::before{top:-14px;left:-10px}.frame::after{bottom:-16px;right:-10px}
+.corner{position:absolute;width:64px;height:64px;border:1px solid rgba(255,255,255,.4);pointer-events:none;opacity:.5}
+.corner.tl{top:26px;left:26px;border-right:0;border-bottom:0;border-radius:18px 0 0 0}
+.corner.tr{top:26px;right:26px;border-left:0;border-bottom:0;border-radius:0 18px 0 0}
+.corner.bl{bottom:26px;left:26px;border-right:0;border-top:0;border-radius:0 0 0 18px}
+.corner.br{bottom:26px;right:26px;border-left:0;border-top:0;border-radius:0 0 18px 0}
+
+.eyebrow{font-family:"Cinzel",serif;letter-spacing:.42em;font-size:15px;color:var(--accent);
+  text-transform:uppercase;text-shadow:0 0 16px rgba(217,168,255,.6);}
+.kicker-cn{font-family:"Ma Shan Zheng",cursive;color:var(--muted);font-size:22px;letter-spacing:.1em;}
+.title-en{font-family:"Cinzel Decorative",serif;font-weight:900;line-height:1;}
+.script{font-family:"Pinyon Script",cursive;}
+.serif{font-family:"Cormorant Garamond",serif;}
+.brush{font-family:"Ma Shan Zheng",cursive;}
+
+.glass{background:linear-gradient(150deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.22);border-radius:22px;backdrop-filter:blur(14px);
+  box-shadow:0 18px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.25);}
+
+/* photo frame */
+.pframe{position:relative;border-radius:22px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.pframe img{width:100%;height:100%;object-fit:cover;}
+.pframe::after{content:"";position:absolute;inset:0;border-radius:22px;
+  border:2px solid rgba(255,255,255,.35);pointer-events:none;}
+.glowwrap{padding:5px;border-radius:26px;}
+.glow-blue{background:linear-gradient(150deg,var(--blue),transparent 55%, var(--blue-deep));box-shadow:0 0 60px var(--blue-glow);}
+.glow-pink{background:linear-gradient(150deg,var(--pink),transparent 55%, var(--pink-deep));box-shadow:0 0 60px var(--pink-glow);}
+.glow-mono{background:linear-gradient(150deg,var(--silver),transparent 55%, var(--silver-deep));box-shadow:0 0 60px var(--silver-glow);}
+
+/* ===== COVER ===== */
+#s-cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.logo{font-family:"UnifrakturCook","Cinzel Decorative",serif;font-weight:700;font-size:150px;line-height:.9;
+  background:linear-gradient(100deg,var(--pink) 0%, #e3a6ff 35%, #b8c4ff 65%, var(--blue) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 26px rgba(220,150,255,.55));letter-spacing:.01em;}
+.cover-cats{position:absolute;font-size:40px;}
+.cover-tri{display:flex;gap:30px;margin-top:8px;}
+.cover-tri .glowwrap{width:268px;height:392px;transition:transform .5s;}
+.cover-tri .glowwrap:nth-child(1){transform:rotate(-5deg) translateY(14px)}
+.cover-tri .glowwrap:nth-child(2){transform:translateY(-10px) scale(1.04);z-index:3}
+.cover-tri .glowwrap:nth-child(3){transform:rotate(5deg) translateY(14px)}
+.cover-tri .glowwrap:hover{transform:translateY(-22px) scale(1.06)}
+
+/* ===== layout helpers ===== */
+.head{display:flex;flex-direction:column;gap:6px;margin-bottom:26px;}
+.h-row{display:flex;align-items:baseline;gap:18px;}
+.two{display:grid;grid-template-columns:560px 1fr;gap:54px;height:100%;align-items:center;}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;
+  font-size:16px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);
+  font-family:"ZCOOL XiaoWei",serif;letter-spacing:.04em;white-space:nowrap;}
+.chip b{font-weight:400;color:var(--gold)}
+.dot{width:13px;height:13px;border-radius:50%;display:inline-block;box-shadow:0 0 12px currentColor;}
+
+.prow{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.16);}
+.prow .k{font-family:"Cinzel",serif;font-size:13px;letter-spacing:.2em;color:var(--accent);min-width:96px;padding-top:3px;}
+.prow .v{font-size:20px;color:var(--ink);font-family:"Noto Serif SC";font-weight:300;}
+
+/* number stats */
+.stats{display:flex;gap:40px;}
+.stat .n{font-family:"Cinzel Decorative",serif;font-weight:900;font-size:72px;line-height:1;
+  background:linear-gradient(180deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 18px rgba(217,168,255,.5));}
+.stat .l{font-family:"ZCOOL XiaoWei";font-size:17px;color:var(--muted);letter-spacing:.08em;margin-top:6px;}
+
+/* member overview cats */
+.cats{display:flex;gap:34px;justify-content:center;align-items:stretch;margin-top:8px;}
+.catcard{width:380px;padding:0 0 28px;text-align:center;}
+.catcard .glowwrap{height:430px;}
+.catcard .name{font-family:"Cinzel Decorative";font-weight:700;font-size:34px;margin-top:22px;}
+.catcard .breed{font-family:"Ma Shan Zheng";font-size:30px;margin-top:2px;}
+.catcard .role{font-family:"ZCOOL XiaoWei";font-size:16px;color:var(--muted);letter-spacing:.18em;margin-top:8px;}
+
+/* timeline */
+.tl{position:relative;margin-top:10px;padding-left:8px;}
+.tl .line{position:absolute;left:8px;top:18px;right:8px;height:2px;
+  background:linear-gradient(90deg,var(--pink),var(--accent),var(--blue));box-shadow:0 0 14px var(--accent);}
+.tl .pts{display:flex;justify-content:space-between;position:relative;}
+.tl .pt{text-align:center;width:24%;}
+.tl .pt .o{width:16px;height:16px;border-radius:50%;background:var(--accent);margin:10px auto;box-shadow:0 0 16px var(--accent);}
+.tl .pt .y{font-family:"Cinzel";font-size:22px;letter-spacing:.1em;}
+.tl .pt .d{font-family:"ZCOOL XiaoWei";font-size:15px;color:var(--muted);margin-top:6px;line-height:1.5;}
+
+.venues{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}
+
+/* schedule */
+.now{display:flex;gap:26px;align-items:center;padding:30px 34px;}
+.now .date{font-family:"Cinzel Decorative";font-weight:900;font-size:58px;line-height:1;color:var(--ink);
+  text-shadow:0 0 24px rgba(217,168,255,.5);}
+.up{display:flex;gap:18px;margin-top:24px;}
+.up .u{flex:1;text-align:center;padding:20px 10px;}
+.up .u .ud{font-family:"Cinzel";font-size:26px;letter-spacing:.06em;}
+.up .u .ul{font-family:"ZCOOL XiaoWei";font-size:14px;color:var(--muted);margin-top:6px}
+
+/* closing */
+#s-end{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px}
+.handles{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.handle{font-family:"Cinzel";letter-spacing:.16em;font-size:20px;color:var(--ink)}
+.handle span{color:var(--accent)}
+
+/* ---------- chrome / nav ---------- */
+.hud{position:fixed;z-index:50;bottom:22px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:18px;font-family:"Cinzel";color:var(--muted);}
+.dots{display:flex;gap:10px}
+.nd{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:.3s}
+.nd.on{background:var(--accent);box-shadow:0 0 12px var(--accent);transform:scale(1.3)}
+.navbtn{position:fixed;z-index:50;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:22px;cursor:pointer;
+  display:grid;place-items:center;transition:.3s;backdrop-filter:blur(6px)}
+.navbtn:hover{background:rgba(217,168,255,.3)}
+#prev{left:18px}#next{right:18px}
+.counter{font-size:13px;letter-spacing:.2em}
+#fs{position:fixed;z-index:50;top:18px;right:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+  color:#fff;border-radius:999px;padding:9px 16px;font-family:"Cinzel";font-size:12px;letter-spacing:.18em;cursor:pointer;backdrop-filter:blur(6px)}
+#fs:hover{background:rgba(217,168,255,.3)}
+.hint{position:fixed;z-index:50;bottom:22px;right:22px;font-family:"Cinzel";font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+<div class="viewport">
+  <div class="stage" id="stage">
+    <div id="stars"></div><div id="stars2"></div><div id="stars3"></div>
+
+    <!-- ================= COVER ================= -->
+    <section class="slide active" id="s-cover">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="eyebrow rise">✦&nbsp;&nbsp; Shanghai · Girl Idol Group &nbsp;&nbsp;✦</div>
+      <div class="rise" style="position:relative;margin-top:6px">
+        <span class="cover-cats" style="left:-70px;top:30px">🐈‍⬛</span>
+        <div class="logo">NiakoNiako</div>
+        <span class="cover-cats" style="right:-66px;bottom:18px">🐾</span>
+      </div>
+      <div class="brush rise" style="font-size:40px;margin-top:4px;letter-spacing:.14em;color:#fff;text-shadow:0 0 22px rgba(255,150,210,.6)">几 只 小 猫 的 舞 台 梦 想</div>
+      <div class="serif rise" style="font-size:23px;color:var(--muted);letter-spacing:.32em;margin-top:6px">喵 子 喵 子&nbsp;&nbsp;·&nbsp;&nbsp;NkNk&nbsp;&nbsp;·&nbsp;&nbsp;暗 黑 梦 幻 偶 像</div>
+      <div class="cover-tri rise">
+        <div class="glowwrap glow-blue"><div class="pframe" style="height:100%"><img src="m1_blue_a.jpg" alt=""></div></div>
+        <div class="glowwrap glow-pink"><div class="pframe" style="height:100%"><img src="m2_pink_a.jpg" alt=""></div></div>
+        <div class="glowwrap glow-mono"><div class="pframe" style="height:100%"><img src="m3_mono_b.jpg" alt=""></div></div>
+      </div>
+    </section>
+
+    <!-- ================= GROUP INTRO ================= -->
+    <section class="slide" id="s-about">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="head rise">
+        <div class="eyebrow">✦ About the Group</div>
+        <div class="h-row"><div class="title-en" style="font-size:62px">The Group</div><div class="kicker-cn">团 体 介 绍</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:54px;align-items:center;height:calc(100% - 150px)">
+        <div class="rise">
+          <p class="serif" style="font-size:30px;font-style:italic;line-height:1.5;color:#fff;text-shadow:0 0 18px rgba(217,168,255,.4)">
+            “以上海为中心活动的女子偶像团体，<br>是几只小猫的舞台梦想。”</p>
+          <p style="font-size:19px;font-weight:300;line-height:2;color:var(--muted);margin-top:26px">
+            <b style="color:var(--accent);font-weight:500">NiakoNiako</b>（喵子喵子 / NkNk）——以「猫」为灵魂、以「暗黑梦幻」为底色的女子偶像团体。三只小猫各自对应一种猫与一种颜色，
+            将哥特洛丽塔、Y2K 与天使恶魔的梦境美学搬上舞台，用现场演出把幻想变成现实。</p>
+          <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap">
+            <span class="chip"><b>📍</b> 据点 · 上海 Shanghai</span>
+            <span class="chip"><b>🎀</b> 概念 · 猫系暗黑梦幻</span>
+            <span class="chip"><b>🎤</b> 形态 · 现场偶像 Live Idol</span>
+          </div>
+        </div>
+        <div class="glass rise" style="padding:34px 38px">
+          <div class="eyebrow" style="font-size:13px">Concept · 世界观</div>
+          <div style="display:flex;flex-direction:column;gap:20px;margin-top:20px">
+            <div><div class="brush" style="font-size:30px;color:var(--pink)">猫 系 少 女</div><div style="font-size:16px;color:var(--muted);font-weight:300;margin-top:2px">暹罗 · 简州 · 奶牛，三只猫的拟人化登场</div></div>
+            <div><div class="brush" style="font-size:30px;color:var(--accent)">暗 黑 梦 幻</div><div style="font-size:16px;color:var(--muted);font-weight:300;margin-top:2px">哥特洛丽塔 × 天使恶魔 × 星河蝶翼</div></div>
+            <div><div class="brush" style="font-size:30px;color:var(--blue)">舞 台 至 上</div><div style="font-size:16px;color:var(--muted);font-weight:300;margin-top:2px">扎根上海各大 Live House 的现场偶像</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MEMBERS OVERVIEW ================= -->
+    <section class="slide" id="s-members">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="head rise" style="align-items:center;text-align:center">
+        <div class="eyebrow">✦ Three Little Cats</div>
+        <div class="h-row" style="justify-content:center"><div class="title-en" style="font-size:58px">Members</div><div class="kicker-cn">三 只 小 猫</div></div>
+      </div>
+      <div class="cats rise">
+        <div class="catcard">
+          <div class="glowwrap glow-blue"><div class="pframe" style="height:100%"><img src="m1_blue_a.jpg" alt=""></div></div>
+          <div class="name" style="color:var(--blue)">咩咩 Miemie</div>
+          <div class="breed">🐈‍⬛ 暹 罗 猫</div>
+          <div class="role"><span class="dot" style="color:var(--blue)"></span> 蓝色担当 · 小队长</div>
+        </div>
+        <div class="catcard">
+          <div class="glowwrap glow-pink"><div class="pframe" style="height:100%"><img src="m2_pink_a.jpg" alt=""></div></div>
+          <div class="name" style="color:var(--pink)">雯雯 Kirin</div>
+          <div class="breed">🐈‍⬛ 简 州 猫</div>
+          <div class="role"><span class="dot" style="color:var(--pink)"></span> 粉色担当</div>
+        </div>
+        <div class="catcard">
+          <div class="glowwrap glow-mono"><div class="pframe" style="height:100%"><img src="m3_mono_b.jpg" alt=""></div></div>
+          <div class="name" style="color:var(--silver)">迟迟 Osoi</div>
+          <div class="breed">🐈‍⬛ 奶 牛 猫</div>
+          <div class="role"><span class="dot" style="color:var(--silver)"></span> 白色担当 · 常驻飞行</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MEMBER 1 : MIEMIE (BLUE) ================= -->
+    <section class="slide" id="s-m1">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="two">
+        <div class="rise" style="position:relative">
+          <div class="glowwrap glow-blue" style="height:760px"><div class="pframe" style="height:100%"><img src="m1_blue_a.jpg" alt=""></div></div>
+          <div class="glowwrap glow-blue" style="position:absolute;right:-34px;bottom:-26px;width:190px;height:270px"><div class="pframe" style="height:100%"><img src="m1_blue_b.jpg" alt=""></div></div>
+        </div>
+        <div>
+          <div class="rise"><div class="eyebrow" style="color:var(--blue)">✦ Member 01 · 暹罗猫</div>
+            <div class="h-row" style="align-items:baseline">
+              <div class="title-en" style="font-size:78px;color:var(--blue);filter:drop-shadow(0 0 22px var(--blue-glow))">Miemie</div>
+              <div class="brush" style="font-size:46px">咩 咩</div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:6px"><span class="chip"><span class="dot" style="color:var(--blue)"></span> 蓝色担当</span><span class="chip">👑 小队长 Leader</span><span class="chip">🐾 暹罗猫</span></div>
+          </div>
+          <div class="rise" style="margin-top:22px">
+            <div class="prow"><div class="k">Birthday</div><div class="v">6 月 6 日　·　双子座　·　MBTI&nbsp;ENFP-A</div></div>
+            <div class="prow"><div class="k">Likes</div><div class="v">无糖奶茶🧋 · 小蛋糕🍰 · 芒果味的一切🥭</div></div>
+            <div class="prow"><div class="k">Hobby</div><div class="v">深夜打开外卖软件逛一圈，然后什么都不买</div></div>
+            <div class="prow" style="border-bottom:0"><div class="k">To Fans</div><div class="v" style="font-family:'Ma Shan Zheng';font-size:26px;color:var(--blue)">「我是一只好猫」</div></div>
+          </div>
+          <div class="glass rise" style="padding:20px 26px;margin-top:18px">
+            <div class="eyebrow" style="font-size:12px;color:var(--blue)">🎤 Stage Career · 偶像履历</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+              <span class="chip"><b>团体</b> Sweet2Poison</span><span class="chip"><b>企划</b> Starlink 偶像计划</span>
+              <span class="chip"><b>单元</b> AxALITA</span><span class="chip"><b>主催</b> 奇迹 miemie</span>
+            </div>
+            <p style="font-size:16px;color:var(--muted);font-weight:300;margin-top:14px;line-height:1.7">自 2024 年起活跃于上海各大偶像现场，登台<b style="color:var(--blue);font-weight:500">数十场</b>——世界树剧场 · 上滨荟 · 大世界 · 环球港 · ME HUB · 育音堂。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MEMBER 2 : KIRIN (PINK) ================= -->
+    <section class="slide" id="s-m2">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="two">
+        <div class="rise" style="position:relative">
+          <div class="glowwrap glow-pink" style="height:760px"><div class="pframe" style="height:100%"><img src="m2_pink_a.jpg" alt=""></div></div>
+          <div class="glowwrap glow-pink" style="position:absolute;right:-34px;bottom:-26px;width:190px;height:270px"><div class="pframe" style="height:100%"><img src="m2_pink_b.jpg" alt=""></div></div>
+        </div>
+        <div>
+          <div class="rise"><div class="eyebrow" style="color:var(--pink)">✦ Member 02 · 简州猫</div>
+            <div class="h-row" style="align-items:baseline">
+              <div class="title-en" style="font-size:78px;color:var(--pink);filter:drop-shadow(0 0 22px var(--pink-glow))">Kirin</div>
+              <div class="brush" style="font-size:46px">雯 雯</div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:6px"><span class="chip"><span class="dot" style="color:var(--pink)"></span> 粉色担当</span><span class="chip">🎀 团队的甜心</span><span class="chip">🐾 简州猫</span></div>
+          </div>
+          <div class="rise" style="margin-top:22px">
+            <div class="prow"><div class="k">Birthday</div><div class="v">9 月 6 日　·　处女座　·　MBTI&nbsp;ISFP</div></div>
+            <div class="prow"><div class="k">Hobby</div><div class="v">养猫 · 养鸟 · 养花，以及吃好吃的</div></div>
+            <div class="prow"><div class="k">Charm</div><div class="v">温柔粉色系，舞台上的治愈担当</div></div>
+            <div class="prow" style="border-bottom:0"><div class="k">To Fans</div><div class="v" style="font-family:'Ma Shan Zheng';font-size:26px;color:var(--pink)">「我是一只猫头·猫头鹰」</div></div>
+          </div>
+          <div class="glass rise" style="padding:20px 26px;margin-top:18px">
+            <div class="eyebrow" style="font-size:12px;color:var(--pink)">🎤 Stage Career · 偶像履历</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+              <span class="chip"><b>担当</b> NiakoNiako 粉色担当</span><span class="chip"><b>现场</b> 上海偶像 Live</span>
+              <span class="chip"><b>风格</b> 治愈系甜心</span>
+            </div>
+            <p style="font-size:16px;color:var(--muted);font-weight:300;margin-top:14px;line-height:1.7">活跃于上海现场偶像圈，以粉色甜系形象登台演出；与多组少女偶像团体深度交流，舞台经验持续积累中。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MEMBER 3 : OSOI (MONO) ================= -->
+    <section class="slide" id="s-m3">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="two">
+        <div class="rise" style="position:relative">
+          <div class="glowwrap glow-mono" style="height:760px"><div class="pframe" style="height:100%"><img src="m3_mono_b.jpg" alt=""></div></div>
+          <div class="glowwrap glow-mono" style="position:absolute;right:-34px;bottom:-26px;width:190px;height:270px"><div class="pframe" style="height:100%"><img src="m3_mono_a.jpg" alt=""></div></div>
+        </div>
+        <div>
+          <div class="rise"><div class="eyebrow" style="color:var(--silver)">✦ Member 03 · 奶牛猫</div>
+            <div class="h-row" style="align-items:baseline">
+              <div class="title-en" style="font-size:74px;color:var(--silver);filter:drop-shadow(0 0 22px var(--silver-glow))">Osoi</div>
+              <div class="brush" style="font-size:46px">迟 迟</div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:6px"><span class="chip"><span class="dot" style="color:var(--silver)"></span> 白色担当</span><span class="chip">🕊️ 常驻飞行</span><span class="chip">🐾 奶牛猫</span></div>
+          </div>
+          <div class="rise" style="margin-top:22px">
+            <div class="prow"><div class="k">Identity</div><div class="v">资深 Coser · 动漫博主 · 微博原创视频博主</div></div>
+            <div class="prow"><div class="k">Style</div><div class="v">黑白天使系，舞台镜头感与表现力担当</div></div>
+            <div class="prow" style="border-bottom:0"><div class="k">Aura</div><div class="v" style="font-family:'Ma Shan Zheng';font-size:26px;color:var(--silver)">「光与影之间的奶牛猫」</div></div>
+          </div>
+          <div class="glass rise" style="padding:20px 26px;margin-top:18px">
+            <div class="eyebrow" style="font-size:12px;color:var(--silver)">🎤 Stage Career · 偶像履历</div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+              <span class="chip"><b>领域</b> 知名 Coser</span><span class="chip"><b>创作</b> 微博原创视频博主</span>
+              <span class="chip"><b>角色</b> NkNk 常驻飞行嘉宾</span>
+            </div>
+            <p style="font-size:16px;color:var(--muted);font-weight:300;margin-top:14px;line-height:1.7">动漫领域人气创作者（动漫 V 指数 57+ / 单日阅读破万），长期以 Cos 与视频活跃于二次元舞台，多次飞行助阵 NiakoNiako 现场。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STAGE / EXPERIENCE ================= -->
+    <section class="slide" id="s-stage">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="head rise">
+        <div class="eyebrow">✦ On Stage · 舞台之上</div>
+        <div class="h-row"><div class="title-en" style="font-size:60px">Live Idol Resume</div><div class="kicker-cn">丰 富 的 现 场 履 历</div></div>
+      </div>
+      <div class="glass rise stats" style="padding:30px 44px;justify-content:space-around">
+        <div class="stat"><div class="n">数十+</div><div class="l">现场演出场次</div></div>
+        <div class="stat"><div class="n">6+</div><div class="l">上海 Live House</div></div>
+        <div class="stat"><div class="n">4+</div><div class="l">偶像团体 / 企划</div></div>
+        <div class="stat"><div class="n">2024→</div><div class="l">持续活跃至今</div></div>
+      </div>
+      <div class="rise" style="margin-top:30px">
+        <div class="eyebrow" style="font-size:13px;margin-bottom:14px">🏛️ Venues · 登台场馆</div>
+        <div class="venues">
+          <span class="chip">世界树剧场</span><span class="chip">上滨荟</span><span class="chip">大世界</span>
+          <span class="chip">环球港</span><span class="chip">ME HUB</span><span class="chip">育音堂</span>
+        </div>
+      </div>
+      <div class="rise tl" style="margin-top:34px">
+        <div class="line"></div>
+        <div class="pts">
+          <div class="pt"><div class="y">2024</div><div class="o"></div><div class="d">出道现场<br>幻想启航 · YGG IDOL LIVE</div></div>
+          <div class="pt"><div class="y">2024 秋冬</div><div class="o"></div><div class="d">流萤之日 · 推团日记<br>NEKOTOPIA · 主催巡演</div></div>
+          <div class="pt"><div class="y">2025</div><div class="o"></div><div class="d">Sweet2Poison 毕业场<br>多团企划同台</div></div>
+          <div class="pt"><div class="y">2026</div><div class="o"></div><div class="d">NiakoNiako 结成<br>06.07 世界树初披露</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCHEDULE ================= -->
+    <section class="slide" id="s-sched">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="head rise">
+        <div class="eyebrow">✦ Catch Us Live</div>
+        <div class="h-row"><div class="title-en" style="font-size:60px">Schedule</div><div class="kicker-cn">当 前 行 程</div></div>
+      </div>
+      <div class="glass rise now" style="border-left:4px solid var(--accent)">
+        <div class="date">06<span style="font-size:30px">/</span>07</div>
+        <div style="flex:1">
+          <div style="font-family:'Cinzel Decorative';font-size:30px;letter-spacing:.04em">🐾 初披露 DEBUT · YGG IDOL Fes</div>
+          <div style="font-size:18px;color:var(--muted);font-weight:300;margin-top:8px;line-height:1.7">📍 上海 · 黄浦区南京东路 800 号第一百货 C 馆 7 楼 世界树剧场<br>🎤 演出 12:50–13:05　　🎁 特典会 13:30–15:00　　🐱 担当色 💙🩷🤍</div>
+        </div>
+      </div>
+      <div class="rise" style="margin-top:6px">
+        <div class="eyebrow" style="font-size:13px;margin:26px 0 4px">✦ Upcoming · 后续场次（上海）</div>
+        <div class="up">
+          <div class="glass u"><div class="ud">06 / 11</div><div class="ul">上海公演</div></div>
+          <div class="glass u"><div class="ud">06 / 21</div><div class="ul">上海公演</div></div>
+          <div class="glass u"><div class="ud">06 / 28</div><div class="ul">上海公演</div></div>
+          <div class="glass u" style="border:1px dashed rgba(255,255,255,.3)"><div class="ud">More…</div><div class="ul">敬请期待</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CLOSING ================= -->
+    <section class="slide" id="s-end">
+      <div class="frame"></div><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="eyebrow rise">✦ Thank You ✦</div>
+      <div class="logo rise" style="font-size:96px">NiakoNiako</div>
+      <div class="script rise" style="font-size:64px;color:#fff;text-shadow:0 0 30px rgba(255,150,210,.7);margin-top:-6px">please keep watching us</div>
+      <div class="brush rise" style="font-size:34px;letter-spacing:.16em;color:var(--muted)">请 · 一 · 直 · 看 · 着 · 我 · 们 👀</div>
+      <div class="handles rise">
+        <div class="handle">微博 · <span>@NiakoNiako_Official</span></div>
+        <div style="display:flex;gap:26px;font-family:'Cinzel';font-size:16px;letter-spacing:.1em;color:var(--muted)">
+          <span>💙 @咩咩Miemie_NiakoNiako</span><span>🩷 @雯雯_NiakoNiako</span><span>🤍 @中村迟</span>
+        </div>
+      </div>
+      <div class="rise" style="font-size:30px;letter-spacing:.5em;margin-top:6px">🐾 ♰ 🐈‍⬛ ♰ 🐾</div>
+    </section>
+
+  </div>
+</div>
+
+<!-- chrome -->
+<button id="prev" class="navbtn">‹</button>
+<button id="next" class="navbtn">›</button>
+<button id="fs">⛶ 全屏放映</button>
+<div class="hud"><div class="dots" id="dots"></div><div class="counter"><span id="cur">1</span> / <span id="tot">9</span></div></div>
+<div class="hint">← → 翻页 · F 全屏</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
+const dotsWrap=document.getElementById('dots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='nd'+(i?'':' on');d.onclick=()=>go(i);dotsWrap.appendChild(d);});
+const dots=[...dotsWrap.children];
+document.getElementById('tot').textContent=slides.length;
+function go(n){idx=(n+slides.length)%slides.length;
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  document.getElementById('cur').textContent=idx+1;}
+document.getElementById('next').onclick=()=>go(idx+1);
+document.getElementById('prev').onclick=()=>go(idx-1);
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){go(idx+1);e.preventDefault();}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){go(idx-1);}
+  if(e.key.toLowerCase()==='f'){toggleFs();}
+});
+function toggleFs(){if(!document.fullscreenElement){document.documentElement.requestFullscreen();}else{document.exitFullscreen();}}
+document.getElementById('fs').onclick=toggleFs;
+
+/* scale stage to fit */
+const stage=document.getElementById('stage');
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();
+
+/* starfield + sparkles */
+function mkStars(el,count,maxr){let sh=[];for(let i=0;i<count;i++){const x=Math.floor(Math.random()*2000),y=Math.floor(Math.random()*1300),r=(Math.random()*maxr).toFixed(1);sh.push(x+'px '+y+'px rgba(255,255,255,'+(0.4+Math.random()*0.6).toFixed(2)+')');}
+  const d=document.createElement('div');d.style.cssText='position:absolute;width:2px;height:2px;border-radius:50%;box-shadow:'+sh.join(',');el.appendChild(d);}
+mkStars(document.getElementById('stars'),140,1.4);
+const s2=document.getElementById('stars2');mkStars(s2,70,2.2);s2.classList.add('tw');s2.style.animationDelay='1.2s';
+const s3=document.getElementById('stars3');mkStars(s3,40,2.8);s3.classList.add('tw');s3.style.animationDelay='2.4s';
+const glyphs=['✦','✧','⊹','❀','♡','🐾','✟'];
+for(let i=0;i<26;i++){const sp=document.createElement('div');sp.className='sparkle';sp.textContent=glyphs[i%glyphs.length];
+  sp.style.left=(Math.random()*1600)+'px';sp.style.top=(Math.random()*900)+'px';
+  sp.style.fontSize=(10+Math.random()*22)+'px';sp.style.opacity=(0.3+Math.random()*0.5);
+  sp.style.animationDuration=(4+Math.random()*7)+'s, '+(2.5+Math.random()*3)+'s';
+  sp.style.color=['#fff','#ffb8e0','#bcd2ff','#e8c6ff'][i%4];
+  stage.appendChild(sp);}
+</script>
+</body>
+</html>
